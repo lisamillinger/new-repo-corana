@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="de6924de-dd0c-4944-a18b-55b4bb2728bc" name="HETZNER" url="http://corana21.s1810456020.student.kwmhgb.at">
+        <fileTransfer host="corana21.s1810456020.student.kwmhgb.at" port="222" rootFolder="/usr/home/sstud702/public_html/corana21/coranaServer" accessType="SFTP">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+          <option name="port" value="222" />
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>
