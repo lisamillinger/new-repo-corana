@@ -10,7 +10,8 @@ class People extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['firstName', 'lastName', 'birthday', 'gender', 'sv_number', 'address', 'email', 'password', 'telephone_number', 'isVaccinated', 'isAdmin', 'vaccination_id'];
+    protected $fillable = ['firstName', 'lastName', 'birthday', 'gender', 'sv_number', 'address',
+        'email', 'password', 'telephone_number', 'isVaccinated', 'isAdmin'];
 
     public function vaccination() : BelongsTo{
         return $this->belongsTo(Vaccination::class);

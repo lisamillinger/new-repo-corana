@@ -15,7 +15,7 @@ class CreateVaccinationsTable extends Migration
     {
         Schema::create('vaccinations', function (Blueprint $table) {
             $table->id();
-            $table->string('key');
+            $table->string('key')->unique();
             $table->string('information')->nullable();
             $table->date('date');
             $table->integer('max_registrations')->default('100');

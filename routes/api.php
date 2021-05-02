@@ -24,6 +24,8 @@ Route::get('/vaccination/{key}', [\App\Http\Controllers\VaccinationController::c
 
 Route::get('vaccination/checkkey/{key}', [\App\Http\Controllers\VaccinationController::class, 'checkKey']);
 
+Route::get('vaccinations/search/{searchTerm}', [\App\Http\Controllers\VaccinationController::class, 'findBySearchTerm']);
+
 Route::post('vaccination', [\App\Http\Controllers\VaccinationController::class, 'save']);
 
 Route::put('vaccination/{key}', [\App\Http\Controllers\VaccinationController::class, 'update']);
