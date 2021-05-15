@@ -23,8 +23,9 @@ class Vaccination extends Model
     }
 
 
-    public function people() : HasMany {
-        return $this->hasMany(People::class);
+    public function people() : BelongsToMany {
+        return $this->belongsToMany(People::class);
     }
+
 }
 

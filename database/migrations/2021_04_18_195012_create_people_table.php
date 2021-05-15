@@ -19,7 +19,7 @@ class CreatePeopleTable extends Migration
             $table->string('lastName');
             $table->date('birthday');
             $table->string('gender');
-            $table->integer('sv_number')->unique();
+            $table->string('sv_number')->unique();
             $table->string('address');
             $table->string('email')->unique();
             $table->string('password');
@@ -27,9 +27,8 @@ class CreatePeopleTable extends Migration
             $table->boolean('isVaccinated')->default(false);
             $table->boolean('isAdmin')->default(false);
 
-            $table->foreignId('vaccination_id')->nullable()->constrained()->onDelete('cascade');
+            $table->foreignId('vaccination_id')->nullable();
             $table->timestamps();
-
         });
     }
 

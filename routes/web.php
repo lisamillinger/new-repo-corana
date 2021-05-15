@@ -25,5 +25,8 @@ use App\Models\Location;
 Route::get('/', [\App\Http\Controllers\VaccinationController::class,'index']);
 Route::get('/vaccinations', [\App\Http\Controllers\VaccinationController::class,'index']);
 Route::get('vaccinations/{vaccination}',[\App\Http\Controllers\VaccinationController::class,'show']);
+Route::get('/', [\App\Http\Controllers\VaccinationController::class,'index']);
+Route::get('/registrations', [\App\Http\Controllers\VaccinationController::class,'index']);
+Route::get('registrations/{registration}',[\App\Http\Controllers\VaccinationController::class,'show']);
 
 
