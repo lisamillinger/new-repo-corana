@@ -18,8 +18,8 @@ class CreateVaccinationsTable extends Migration
             $table->string('key')->unique();
             $table->string('information')->nullable();
             $table->date('date');
-            $table->integer('max_registrations')->default('100');
-            $table->integer('current_registrations')->default('0');
+            $table->integer('max_registrations')->default(100);
+            $table->integer('current_registrations')->default(0);
             $table->boolean('isFull');
 
             $table->timestamps();

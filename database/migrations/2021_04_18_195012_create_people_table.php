@@ -23,7 +23,8 @@ class CreatePeopleTable extends Migration
             $table->string('address');
             $table->string('email')->unique();
             $table->string('password');
-            $table->integer('telephone_number');
+            $table->string('telephone_number');
+            $table->boolean('isRegistred')->default(false);
             $table->boolean('isVaccinated')->default(false);
             $table->boolean('isAdmin')->default(false);
 

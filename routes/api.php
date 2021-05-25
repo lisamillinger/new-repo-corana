@@ -35,13 +35,14 @@ Route::get('registrations/checkid/{id}', [\App\Http\Controllers\VaccinationContr
 Route::get('registrations/{id}/vaccination', [\App\Http\Controllers\VaccinationController::class, 'getVaccinationForPerson']);
 Route::put('registration/{sv_number}', [\App\Http\Controllers\VaccinationController::class, 'vaccinatePerson']);
 
+Route::post('vaccination', [\App\Http\Controllers\VaccinationController::class, 'save']);
+Route::put('vaccination/{key}', [\App\Http\Controllers\VaccinationController::class, 'update']);
+Route::delete('vaccination/{key}', [\App\Http\Controllers\VaccinationController::class, 'delete']);
+Route::post('auth/logout', [AuthController::class,'logout']);
 
 
 //NUR FÜR ADMIN MÖGLICH
 Route::group(['middleware' => ['api', 'auth.jwt']], function(){
-    Route::post('vaccination', [\App\Http\Controllers\VaccinationController::class, 'save']);
-    Route::put('vaccination/{key}', [\App\Http\Controllers\VaccinationController::class, 'update']);
-    Route::delete('vaccination/{key}', [\App\Http\Controllers\VaccinationController::class, 'delete']);
-    Route::post('auth/logout', [AuthController::class,'logout']);
+
 });
 

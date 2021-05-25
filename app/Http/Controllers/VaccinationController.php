@@ -15,7 +15,7 @@ use Psy\Util\Json;
 class VaccinationController extends Controller
 {
     /**
-     * functions to get all vaccinations and people
+     * methods to get all vaccinations and people
      */
     public function index()
     {
@@ -32,7 +32,7 @@ class VaccinationController extends Controller
     }
 
     /**
-     *  functions to get specific vaccinations & people
+     *  methods to get specific vaccinations & people
      */
     public function findPersonById($id)
     {
@@ -63,7 +63,7 @@ class VaccinationController extends Controller
     }
 
     /**
-     * functions to check id and key
+     * methods to check id and key
      */
 
     //FOR VACCINATION
@@ -83,7 +83,7 @@ class VaccinationController extends Controller
     }
 
     /**
-     * function to get vaccination for specific person
+     * method to get vaccination for specific person
      */
 
     public function getVaccinationForPerson($id)
@@ -107,17 +107,6 @@ class VaccinationController extends Controller
         try {
             $vaccination = Vaccination::create($request->all());
 
-            /*if (isset($request['people']) && is_array($request['people'])) {
-                foreach ($request['people'] as $per) {
-                    $person = People::firstOrNew(['firstName' => $per['firstName'], 'lastName' => $per['lastName'],
-                        'birthday' => $per['birthday'], 'gender' => $per['gender'], 'sv_number' => $per['sv_number'],
-                        'address'=>$per['address'], 'email' => $per['email'], 'password'=> $per['password'], 'telephone_number' => $per['telephone_number'],
-                        'isVaccinated' => $per['isVaccinated'], 'isAdmin' => $per['isAdmin']]);
-                    $vaccination->people()->save($person);
-                }
-            }*/
-
-            //save place
             if (isset($request['locations']) && is_array($request['locations'])) {
                 foreach ($request['locations'] as $loc) {
                     $location = Location::firstOrNew(['post_code' => $loc['post_code'],
@@ -178,6 +167,9 @@ class VaccinationController extends Controller
         }
     }
 
+    /**
+     * DELETING A VACCINATION
+     */
     public function delete(string $key): JsonResponse
     {
         $vaccination = Vaccination::where('key', $key)->first();
@@ -202,7 +194,7 @@ class VaccinationController extends Controller
 
 
     /**
-     * Person impfen/Statusänderung von isVaccinated
+     * VACCINATING PEOPLE
      */
     public function vaccinatePerson(string $sv_number): JsonResponse
     {
@@ -233,9 +225,8 @@ class VaccinationController extends Controller
     }
 
     /**
-     * Person zu Impfung hinzufügen --> Anmelden
+     * REGISTRATION OF PEOPLE
      */
-
     public function registerPerson(string $key, string $sv_number) {
         DB::beginTransaction();
 
@@ -245,14 +236,19 @@ class VaccinationController extends Controller
 
             $vaccinationArray = (array)$vaccination;
 
+
+
             if ($vaccination != null) {
                 if (is_array($vaccinationArray)) {
 
                     array_push($vaccinationArray, $person);
+                    $vaccination['current_registrations'] = $vaccination['current_registrations'] + 1;
+                    $person['isRegistred'] = true;
+                    $person->save();
                     $vaccination->people()->save($person);
+                    $vaccination->save();
                 }
             }
-
 
             DB::commit();
 
